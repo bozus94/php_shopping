@@ -1,16 +1,10 @@
 <?php
-class ProductoModel
+
+namespace App\Models;
+
+class Producto
 {
-    private $id;
-    private $categoriaId;
-    private $nombre;
-    private $descripcion;
-    private $precio;
-    private $stock;
-    private $oferta;
-    private $fecha;
-    private $imagen;
-    private $db;
+    private $id, $categoriaId, $nombre, $descripcion, $precio, $stock, $oferta, $fecha, $imagen, $db;
 
     public function __construct()
     {

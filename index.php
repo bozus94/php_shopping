@@ -1,17 +1,13 @@
 <?php
+
 session_start();
 require_once('autoload.php');
-require_once('config/configApp.php');
+require_once('config/App.php');
 require_once('config/DataBase.php');
-require_once('includes/funciones/funciones.php');
-require_once('includes/templates/header.php');
-require_once('includes/templates/barra.php');
-require_once('includes/templates/footer_barra.php');
-/* 
-Utils::preDump($_SESSION); */
-
-$controller = null;
-$action = null;
+require_once('App/utilities/helpers.php');
+require_once('resources/views/partials/header.php');
+require_once('resources/views/partials/barra.php');
+require_once('resources/views/partials/footer_barra.php');
 
 function error()
 {
@@ -24,8 +20,7 @@ if (isset($_GET['controller'])) {
 } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
     $controller = CONTROLLER_DEFAULT;
 } else {
-    error();
-    exit();
+    echo 'la clase no existe';
 }
 
 if (class_exists($controller)) {
@@ -34,12 +29,11 @@ if (class_exists($controller)) {
         $accion = $_GET['action'];
     } elseif (!isset($_GET['controller']) && !isset($_GET['action'])) {
         $accion = ACTION_DEFAULT;
-    } else {
-        error();
+        echo $accion;
     }
     $controlador->$accion();
 } else {
-    error();
+    echo 'la clase y el metodo no existe';
 }
 
-require_once('includes/templates/footer.php');
+require_once('resources/views/partials/footer.php');

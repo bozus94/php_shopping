@@ -1,5 +1,8 @@
 <?php
-include_once 'includes/models/ProductoModel.php';
+
+namespace App\Controllers;
+
+use App\Utilities\Helpersdd;
 
 class ProductoController
 {
@@ -7,14 +10,14 @@ class ProductoController
 
     public function __construct()
     {
-        $this->session = Utils::getController();
+        $this->session = Helpers::getController();
     }
     public function index()
     {
         $producto = new ProductoModel();
         $productos = $producto->getRamdom(PRODUCTOS_X_SECTION);
         $productos2 = $producto->getRamdom(PRODUCTOS_X_SECTION);
-        require_once 'includes/views/producto/index.view.php';
+        return view('producto/index', compact($productos));
     }
 
     public function productoView()
@@ -33,7 +36,7 @@ class ProductoController
 
     public function gestion()
     {
-        Utils::isAdmin('header');
+        Helpers::isAdmin('header');
         $producto = new ProductoModel();
         $productos = $producto->getAll();
         require_once 'includes/views/producto/gestion.view.php';
@@ -41,23 +44,23 @@ class ProductoController
 
     public function crear()
     {
-        Utils::isAdmin('header');
+        Helpers::isAdmin('header');
         require_once 'includes/views/producto/form_gestion.view.php';
     }
 
     public function guardar()
     {
-        Utils::isAdmin('header');
-        
+        Helpers::isAdmin('header');
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
-            $nombre =  Utils::sanitizeData($_POST['nombre']);
-            $categoriaId =  Utils::sanitizeData($_POST['categoriaId']);
-            $descripcion = Utils::sanitizeData($_POST['descripcion']);
-            $precio =  Utils::sanitizeData($_POST['precio']);
-            $stock = Utils::sanitizeData($_POST['stock']);
+            $nombre =  Helpers::sanitizeData($_POST['nombre']);
+            $categoriaId =  Helpers::sanitizeData($_POST['categoriaId']);
+            $descripcion = Helpers::sanitizeData($_POST['descripcion']);
+            $precio =  Helpers::sanitizeData($_POST['precio']);
+            $stock = Helpers::sanitizeData($_POST['stock']);
             $file = ($_FILES['image']);
-            $name_file = Utils::sanitizeData($file['name']);
+            $name_file = Helpers::sanitizeData($file['name']);
 
 
             if ($nombre && $categoriaId && $descripcion && $precio && $stock) {
@@ -117,10 +120,10 @@ class ProductoController
 
     public function eliminar()
     {
-        Utils::isAdmin('header');
+        Helpers::isAdmin('header');
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET['id'])) {
 
-            $id = Utils::sanitizeData($_GET['id']);
+            $id = Helpers::sanitizeData($_GET['id']);
 
             if ($id) {
                 $producto = new ProductoModel();
@@ -155,7 +158,7 @@ class ProductoController
 
     public function editar()
     {
-        Utils::isAdmin('header');
+        Helpers::isAdmin('header');
         if (isset($_GET['id']) && $_SERVER['REQUEST_METHOD'] === 'GET') {
 
             $editar = true;

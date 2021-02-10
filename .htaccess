@@ -1,10 +1,19 @@
 <IfModule mod_rewrite.c>
 
+
+
 #activar rewrite
 RewriteEngine on
 
+Options -Multiviews
+Options +FollowSymLinks
+
+# Options +FollowSymLinks: es la linea que nos dice si un directorio es un enlace simbólico, que lo siga.
+# RewriteEngine on: es la linea donde le decimos a Apache que queremos sobre escribir las URLs para crear URLs amigables.
+
+
 #URL de error
-ErrorDocument 404 http://no_laravel.test/shopping/error/index
+ErrorDocument 404 http://php_shopping.test/error/index
 
 # condicionales para que las url's no muestren ficheros ni directorios cualquieras
 RewriteCond %{SCRIPT_FILENAME} !-d
@@ -12,6 +21,8 @@ RewriteCond %{SCRIPT_FILENAME} !-f
 
 #reglas de reescritura a URL'S amigables
 RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+
+
 
 </IfModule>
 

@@ -1,6 +1,8 @@
 <?php
 
-class Utils
+namespace App\Utilities;
+
+class Helpers
 {
     public static function preDump($objeto)
     {
@@ -50,7 +52,7 @@ class Utils
             $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => $cost]);
             $result = $hash;
         }
-        
+
         return $result;
     }
 
@@ -136,6 +138,19 @@ class Utils
                 echo $error;
             }
             die();
+        }
+    }
+
+    public static function view($view, $variables)
+    {
+        if (file_exists(RUTA . '/resources/views/' . $vie . '.view.php')) {
+            if ($variables) {
+                extract($variables);
+            }
+            return include_once RUTA . '/resources/views/' . $view . '.view.php';
+        } else {
+            echo RUTA . '/resources/views/' . $view . '.view.php';
+            return die('No existe la vista proporcionada');
         }
     }
 }

@@ -11,5 +11,3 @@ $bd_config = array(
     'password' => '',
     'puerto' => 3306
 );
-
-$nombre_pagina = htmlspecialchars($_SERVER['PHP_SELF']);

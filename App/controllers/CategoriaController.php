@@ -1,6 +1,6 @@
 <?php
-include_once 'includes/models/CategoriaModel.php';
-include_once 'includes/models/ProductoModel.php';
+
+namespace App\Controllers;
 
 class CategoriaController
 {

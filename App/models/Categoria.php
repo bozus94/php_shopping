@@ -1,6 +1,10 @@
 <?php
 
-class CategoriaModel
+namespace App\Models;
+
+namespace App\Models;
+
+class Categoria
 {
     private $id;
     private $nombre;
@@ -110,5 +114,4 @@ class CategoriaModel
 
         return $result;
     }
-
 }

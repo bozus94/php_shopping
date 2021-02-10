@@ -1,5 +1,6 @@
 <?php
-require_once 'includes/models/UsuarioModel.php';
+
+namespace App\Controllers;
 
 class UsuarioController
 {
@@ -9,6 +10,7 @@ class UsuarioController
     {
         $this->session = Utils::getController();
     }
+
     public function index()
     {
         echo 'controlador usuario,Accion index';
@@ -68,6 +70,7 @@ class UsuarioController
             header('Location:' . RUTA . 'usuario/registro');
         }
     }
+
     public function iniciarSesion()
     {
         if (isset($_SESSION[$this->session]['status']) && $_SESSION[$this->session]['status'] === true) {

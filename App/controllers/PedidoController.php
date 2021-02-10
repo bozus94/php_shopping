@@ -1,5 +1,7 @@
 <?php
-include_once 'includes/models/PedidoModel.php';
+
+namespace App\Controllers;
+
 class PedidoController
 {
     public $session;

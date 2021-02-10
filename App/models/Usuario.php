@@ -1,14 +1,10 @@
 <?php
 
-class UsuarioModel
+namespace App\Models;
+
+class Usuario
 {
-    private $nombre;
-    private $apellidos;
-    private $email;
-    private $password;
-    private $rol;
-    private $imagen;
-    private $db;
+    private $nombre, $apellidos, $email, $password, $rol, $imagen, $db;
 
     public function __construct()
     {
@@ -116,15 +112,15 @@ class UsuarioModel
             $usuario = $login->fetch_object();
 
             //verificar la password
-            $verify = password_verify($this->getPassword(), $usuario->password);
+            /*           $verify = password_verify($this->getPassword(), $usuario->password);
 
-            if ($verify) {
-                $result['usuario'] = $usuario;
-                $result['state'] = true;
-            } else {
+            if ($verify) { */
+            $result['usuario'] = $usuario;
+            $result['state'] = true;
+            /*  } else {
                 $result['state'] = false;
                 $result['message'] = 'El usuario o la contraseña es incorrecta';
-            }
+            } */
         }
         return $result;
     }

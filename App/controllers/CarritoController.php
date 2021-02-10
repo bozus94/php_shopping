@@ -1,14 +1,15 @@
 <?php
-include_once 'includes/models/ProductoModel.php';
+
+namespace App\Controllers;
+
+use App\Utilities\Helpers;
 
 class CarritoController
 {
     public function index()
-    {/* 
-        Utils::preDump($_SESSION['carrito'][0]); */
-
-        $stats = Utils::statsCarrito();
-        require_once 'includes/views/carrito/carrito.view.php';
+    {
+        $stats = Helpers::statsCarrito();
+        Helpers::view('carrito/index', compact('stats'));
     }
 
     public function add()
@@ -24,7 +25,7 @@ class CarritoController
             if (isset($_SESSION['carrito'])) {
                 $counter = 0;
                 foreach ($_SESSION['carrito'] as $indice => $elemento) {
-                    /*  Utils::preDump($indice);
+                    /*  Helpers::preDump($indice);
                     die(); */
                     if ($elemento['id_producto'] == $producto_id) {
                         for ($i = 0; $i < $_POST['cantidad']; $i++) {
@@ -51,14 +52,14 @@ class CarritoController
                         'producto' => $producto
                     );
                 }
-                /* Utils::preDump($_SESSION['carrito']); */
+                /* Helpers::preDump($_SESSION['carrito']); */
             }
             header('Location:' . RUTA . 'carrito/index');
         } else {
             header('Location:' . $_SERVER['HTTP_REFERER']);
         }
     }
-    
+
     public function delete()
     {
         unset($_SESSION['carrito']);
