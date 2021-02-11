@@ -1,17 +1,26 @@
 <IfModule mod_rewrite.c>
+ <IfModule mod_negotiation.c>
+        Options -MultiViews -Indexes
+    </IfModule>
 
 #activar rewrite
 RewriteEngine on
 
-#URL de error
-ErrorDocument 404 http://no_laravel.test/shopping/error/index
-
 # condicionales para que las url's no muestren ficheros ni directorios cualquieras
-RewriteCond %{SCRIPT_FILENAME} !-d
-RewriteCond %{SCRIPT_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
 
 #reglas de reescritura a URL'S amigables
-RewriteRule ^(.*)/(.*) index.php?controller=$1&action=$2
+RewriteRule ^(.*)/(.*)/?$ /index.php?controller=$1&action=$2 [L,QSA]
+RewriteRule ^(.*)/(.*)/([0-9]+)/?$ /index.php?controller=$1&action=$2&id=$3 [L,QSA]
+
+# asegurar htaccess
+<Files .htaccess>
+order allow,deny
+deny from all
+</Files>        
+
+#URL de error
+ErrorDocument 404 /index.php?controller=error&action=index
 
 </IfModule>
-
