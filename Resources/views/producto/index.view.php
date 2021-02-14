@@ -10,7 +10,7 @@
                     <?php ?>
                     <?php while ($pro = $productos->fetch_object()) : ?>
                         <div class="producto">
-                            <a href="<?= RUTA; ?>producto/productoView&prod=<?= $pro->id; ?>" class="link-producto">
+                            <a href="<?= RUTA; ?>producto/productoView/<?= $pro->id; ?>" class="link-producto">
                                 <div class="thumb-producto">
                                     <?php if ($pro->imagen == null) : ?>
                                         <img src="<?= RUTA; ?>assets/img/new-product2.jpg" alt="producto">
@@ -36,7 +36,7 @@
                     <?php ?>
                     <?php while ($pro = $productos2->fetch_object()) : ?>
                         <div class="producto">
-                            <a href="<?= RUTA; ?>producto/productoView&prod=<?= $pro->id; ?>" class="link-producto">
+                            <a href="<?= RUTA; ?>producto/productoView/<?= $pro->id; ?>" class="link-producto">
                                 <div class="thumb-producto">
                                     <?php if ($pro->imagen == null) : ?>
                                         <img src="<?= RUTA; ?>assets/img/new-product2.jpg" alt="producto">

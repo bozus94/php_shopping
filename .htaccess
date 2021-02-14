@@ -1,7 +1,7 @@
 <IfModule mod_rewrite.c>
  <IfModule mod_negotiation.c>
-        Options -MultiViews -Indexes
-    </IfModule>
+    Options -MultiViews -Indexes
+</IfModule>
 
 #activar rewrite
 RewriteEngine on
@@ -11,8 +11,7 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 
 #reglas de reescritura a URL'S amigables
-RewriteRule ^(.*)/(.*)/?$ /index.php?controller=$1&action=$2 [L,QSA]
-RewriteRule ^(.*)/(.*)/([0-9]+)/?$ /index.php?controller=$1&action=$2&id=$3 [L,QSA]
+RewriteRule ^(.*)/(.*)/?$                /index.php?controller=$1&action=$2 [L,QSA]
 
 # asegurar htaccess
 <Files .htaccess>
@@ -21,6 +20,6 @@ deny from all
 </Files>        
 
 #URL de error
-ErrorDocument 404 /index.php?controller=error&action=index
+#ErrorDocument 404 /index.php?controller=error&action=index
 
 </IfModule>

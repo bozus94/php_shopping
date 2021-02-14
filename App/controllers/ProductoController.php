@@ -9,6 +9,7 @@ class ProductoController
     {
         $this->session = Utils::getController();
     }
+
     public function index()
     {
         $producto = new ProductoModel();
@@ -19,9 +20,8 @@ class ProductoController
 
     public function productoView()
     {
-        $producto = false;
-        if (isset($_GET['prod'])) {
-            $idProd = $_GET['prod'];
+        if (isset($_GET['id'])) {
+            $idProd = $_GET['id'];
             $prod = new ProductoModel();
             $prod->setId($idProd);
             $producto = $prod->getOne();
@@ -48,7 +48,7 @@ class ProductoController
     public function guardar()
     {
         Utils::isAdmin('header');
-        
+
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['submit'])) {
 
             $nombre =  Utils::sanitizeData($_POST['nombre']);

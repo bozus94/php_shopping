@@ -1,6 +1,6 @@
 <?php
 
-class Utils
+class Herlpers
 {
     public static function preDump($objeto)
     {
@@ -50,7 +50,7 @@ class Utils
             $hash = password_hash($password, PASSWORD_BCRYPT, ['cost' => $cost]);
             $result = $hash;
         }
-        
+
         return $result;
     }
 
